@@ -1,6 +1,9 @@
 using Entitas;
 
-public class HealthComponent : IComponent
+namespace Components
 {
-    
+    public class HealthComponent : IComponent
+    {
+        public float value;
+    }
 }

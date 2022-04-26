@@ -1,18 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Systems;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private LogHealthSystem _logHealthSystem;
+    private CreatePlayerSystem _createPlayerSystem;
+    
+    private void Start()
     {
+        var contexts = Contexts.sharedInstance;
+
+        _logHealthSystem = new LogHealthSystem(contexts);
+        _createPlayerSystem = new CreatePlayerSystem(contexts);
         
+        _createPlayerSystem.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        _logHealthSystem.Execute();
     }
 }
