@@ -6,17 +6,23 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
+using Game.Player;
+
 public static class GameComponentsLookup {
 
     public const int ComponentsHealth = 0;
+    public const int PlayerMovement = 1;
 
-    public const int TotalComponents = 1;
+    public const int TotalComponents = 2;
 
     public static readonly string[] componentNames = {
-        "ComponentsHealth"
+        "ComponentsHealth",
+        "PlayerMovement"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Components.HealthComponent)
+        typeof(Components.HealthComponent),
+        typeof(PlayerMovementComponent)
     };
 }
