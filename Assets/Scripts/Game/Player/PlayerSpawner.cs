@@ -27,7 +27,7 @@ namespace Game
             var e = contexts.game.CreateEntity();
             _playerController.Link(contexts, e);
             e.AddGameUnityController(_playerController);
-            e.AddGamePosition(_playerController.transform.position);
+            e.AddGameEntityComponentPosition(_playerController.transform.position);
 
             _playerMovementCallback = new PlayerMovementCallback();
             CoreSceneInstaller.Context.Container.Inject(_playerMovementCallback);

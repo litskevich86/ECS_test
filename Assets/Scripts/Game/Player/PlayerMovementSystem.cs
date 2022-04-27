@@ -10,12 +10,12 @@ namespace Game.Player
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.GamePosition);
+            return context.CreateCollector(GameMatcher.GameEntityComponentPosition);
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasGamePosition;
+            return entity.hasGameEntityComponentPosition;
         }
 
         protected override void Execute(List<GameEntity> entities)
@@ -26,7 +26,7 @@ namespace Game.Player
                 {
                     if (e.gameUnityController.UnityController.TryGetComponent(out PlayerController playerController))
                     {
-                        playerController.MoveToPoint(e.gamePosition.Position);
+                        playerController.MoveToPoint(e.gameEntityComponentPosition.Position);
                     }
                 }
             }
