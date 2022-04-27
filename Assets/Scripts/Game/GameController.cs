@@ -1,26 +1,39 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Systems;
+using Entitas.Unity;
+using Game.Input;
+using Game.Player;
+using UniRx;
 using UnityEngine;
+using Zenject;
 
-public class GameController : MonoBehaviour
+namespace Game
 {
-    private LogHealthSystem _logHealthSystem;
-    private CreatePlayerSystem _createPlayerSystem;
-    
-    private void Start()
+    public class GameController : MonoBehaviour
     {
-        var contexts = Contexts.sharedInstance;
+        private PlayerMovementSystem _playerMovementSystem;
+        private CompositeDisposable _disposable = new CompositeDisposable();
 
-        _logHealthSystem = new LogHealthSystem(contexts);
-        _createPlayerSystem = new CreatePlayerSystem(contexts);
+        [Inject] private InputController _inputController;
+        [Inject] private PlayerSpawner _playerSpawner;
         
-        _createPlayerSystem.Initialize();
-    }
+        public async void Initialize()
+        {
+            var contexts = Contexts.sharedInstance;
+            
+            _playerMovementSystem = new PlayerMovementSystem(contexts);
 
-    private void Update()
-    {
-        _logHealthSystem.Execute();
+            await _playerSpawner.CreatePlayer(contexts);
+
+            _inputController.Initialize();
+
+            Observable.EveryUpdate()
+                .Subscribe(_ => UpdateManual())
+                .AddTo(_disposable);
+        }
+
+        private void UpdateManual()
+        {
+            _playerMovementSystem.Execute();
+        }
     }
 }

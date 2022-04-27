@@ -152,11 +152,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9896c462ba024aa4db54f65def4d4750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _context: {fileID: 466998946}
   _gameController:
     m_AssetGUID: 064b7c0fce8abdc478dbe20aa753f211
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  _inputController:
+    m_AssetGUID: fee863ab680561742a3b97cb62b6884e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _playerSpawner:
+    m_AssetGUID: b10a37356f196c143bdfdfb2988bca92
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _camera: {fileID: 519420031}
 --- !u!4 &167640077
 Transform:
   m_ObjectHideFlags: 0

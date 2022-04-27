@@ -1,28 +1,34 @@
 using System.Collections.Generic;
 using Entitas;
+using UnityEngine;
 
 namespace Game.Player
 {
-    public class PlayerMovementSystem : ReactiveSystem<GameEntity>
+    public sealed class PlayerMovementSystem : ReactiveSystem<GameEntity>
     {
-        public PlayerMovementSystem(Contexts contexts) : base(contexts.game){}
+        public PlayerMovementSystem(Contexts contexts) : base(contexts.game) {}
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.PlayerMovement);
+            return context.CreateCollector(GameMatcher.GamePosition);
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasPlayerMovement;
+            return entity.hasGamePosition;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var e in entities)
             {
-                var position = e.playerMovement._position;
-                UnityEngine.Debug.Log("position = " + position);
+                if (e.hasGameUnityController)
+                {
+                    if (e.gameUnityController.UnityController.TryGetComponent(out PlayerController playerController))
+                    {
+                        playerController.MoveToPoint(e.gamePosition.Position);
+                    }
+                }
             }
         }
     }
