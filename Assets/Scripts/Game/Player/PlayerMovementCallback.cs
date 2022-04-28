@@ -36,21 +36,21 @@ namespace Game.Player
 
         private void BeginDrag(Callback callback)
         {
-            // if (callback.Object != null)
-            // {
-            //     if (callback.Object.TryGetComponent(out PlayerController playerController))
-            //     {
-            //         if (playerController.LinkedEntity.hasGamePosition)
-            //         {
-            //             _playerController = playerController;
-            //
-            //             _oldPoint = Vector3.zero;
-            //             _newPoint = Vector3.zero;
-            //
-            //             _oldPoint = _camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
-            //         }
-            //     }
-            // }
+            if (callback.Object != null)
+            {
+                if (callback.Object.TryGetComponent(out PlayerController playerController))
+                {
+                    if (playerController.LinkedEntity.hasGameEntityComponentPosition)
+                    {
+                        _playerController = playerController;
+            
+                        _oldPoint = Vector3.zero;
+                        _newPoint = Vector3.zero;
+            
+                        _oldPoint = _camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+                    }
+                }
+            }
         }
         
         private void EndDrag(Callback callback)
@@ -60,12 +60,12 @@ namespace Game.Player
 
         private void Drag(Callback callback)
         {
-            // if (_playerController != null)
-            // {
-            //     Vector3 newPos = _playerController.LinkedEntity.gamePosition.Position + CalculateDistance();
-            //
-            //     _playerController.LinkedEntity.ReplaceGamePosition(newPos);
-            // }
+            if (_playerController != null)
+            {
+                Vector3 newPos = _playerController.LinkedEntity.gameEntityComponentPosition.Position + CalculateDistance();
+            
+                _playerController.LinkedEntity.ReplaceGameEntityComponentPosition(newPos);
+            }
         }
         
         private Vector3 CalculateDistance()
