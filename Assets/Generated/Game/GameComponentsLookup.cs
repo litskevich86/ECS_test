@@ -8,17 +8,20 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int GameEntityComponentPosition = 0;
-    public const int GameUnityController = 1;
+    public const int GameCollisionId = 0;
+    public const int GameEntityComponentPosition = 1;
+    public const int GameUnityController = 2;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
+        "GameCollisionId",
         "GameEntityComponentPosition",
         "GameUnityController"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(Game.CollisionIdComponent),
         typeof(Game.EntityComponent.PositionComponent),
         typeof(Game.UnityControllerComponent)
     };

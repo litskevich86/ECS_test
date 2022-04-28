@@ -168,6 +168,11 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  _obstacleSpawner:
+    m_AssetGUID: 6fc1df5ae741f1c46ac9b76293c555c6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   _camera: {fileID: 519420031}
 --- !u!4 &167640077
 Transform:

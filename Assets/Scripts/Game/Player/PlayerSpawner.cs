@@ -3,6 +3,7 @@ using Game.Player;
 using Installers;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using Zenject;
 
 namespace Game
 {
@@ -13,6 +14,8 @@ namespace Game
         private PlayerController _playerController;
         private PlayerMovementCallback _playerMovementCallback;
 
+        [Inject] private IdProvider _idProvider;
+
         public async UniTask CreatePlayer(Contexts contexts)
         {
             var result = Addressables.LoadAssetAsync<GameObject>(_playerControllerPrefab);
@@ -22,6 +25,8 @@ namespace Game
             if (result.Result.TryGetComponent(out PlayerController playerController))
             {
                 _playerController = Instantiate(playerController, transform);
+                _playerController.Initialize(_idProvider.GetId());
+                _idProvider.AddElement(_playerController);
             }
 
             var e = contexts.game.CreateEntity();
